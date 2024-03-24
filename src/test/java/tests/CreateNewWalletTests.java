@@ -14,6 +14,7 @@ public class CreateNewWalletTests extends BaseTest {
         createNewWalletPage.getStarted();
         createNewWalletPage.createNewWallet();
         createNewWalletPage.skipBackupSetUp();
+        result = createNewWalletPage.verifyPasscodeMismatchError();
         createNewWalletPage.setupPassCode();
         result = createNewWalletPage.verifyWelcomeBannerIsDisplayed();
         result = createNewWalletPage.verifyWalletCreationIsSuccessful();

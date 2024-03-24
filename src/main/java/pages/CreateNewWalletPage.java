@@ -26,9 +26,13 @@ public class CreateNewWalletPage {
   @AndroidFindBy(xpath="//android.widget.TextView[@text='SKIP']")
   private WebElement skipBackUpSetup;
 
+  @AndroidFindBy(xpath="//android.widget.TextView[@text='Those passwords didn’t match!']")
+  private WebElement passcodeError;
   @AndroidFindBy(xpath="//android.widget.TextView[@text='1']")
-  private WebElement setUpPassCode;
+  private WebElement setUpPassCodeWith1;
 
+  @AndroidFindBy(xpath="//android.widget.TextView[@text='2']")
+  private WebElement setUpPassCodeWith2;
   @AndroidFindBy(xpath="//android.widget.TextView[@text='Start using Trust Wallet']")
   private WebElement welcomeBanner;
   @AndroidFindBy(xpath="//android.widget.Button[@text='Allow']")
@@ -47,13 +51,23 @@ public class CreateNewWalletPage {
   public void skipBackupSetUp(){
     skipBackUpSetup.click();
   }
-  public void setupPassCode() throws InterruptedException {
+  public boolean verifyPasscodeMismatchError() throws InterruptedException {
     for(int i=0;i<6;i++){
-      setUpPassCode.click();
+      setUpPassCodeWith1.click();
     }
     Thread.sleep(2000);
     for(int i=0;i<6;i++){
-      setUpPassCode.click();
+      setUpPassCodeWith2.click();
+    }
+    return passcodeError.isDisplayed();
+  }
+  public void setupPassCode() throws InterruptedException {
+    for(int i=0;i<6;i++){
+      setUpPassCodeWith1.click();
+    }
+    Thread.sleep(2000);
+    for(int i=0;i<6;i++){
+      setUpPassCodeWith1.click();
     }
   }
   public boolean verifyWelcomeBannerIsDisplayed(){
